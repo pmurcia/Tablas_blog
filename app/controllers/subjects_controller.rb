@@ -10,4 +10,14 @@ class SubjectsController < ApplicationController
   def new
   	@subject = Subject.new
   end
+
+  def create
+  	@subject = Subject.create name: params[:subject][:name]
+
+  	if @subject.save
+  	  redirect_to action: 'index', controller: 'subjects'
+  	else
+  	  render 'new'
+  	end
+  end
 end
