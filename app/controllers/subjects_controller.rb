@@ -26,6 +26,13 @@ class SubjectsController < ApplicationController
   end
 
   def update
+  	@subject = Subject.find params[:id]
+  	@subject.update name: params[:subject][:name]
 
+  	if @subject.valid?
+  	  redirect_to action: 'index', controller: 'subjects'
+  	else
+  	  render 'edit'
+  	end 
   end
 end
