@@ -1,5 +1,5 @@
 <ul>
 <% @subjects.each do |subject| %>
-  <li><%= subject.name %></li>
+  <li><%= link_to subject.name, subject_path(subject) %></li>
 <% end %>
 </ul>
