@@ -20,4 +20,12 @@ class SubjectsController < ApplicationController
   	  render 'new'
   	end
   end
+
+  def edit
+  	@subject = Subject.find params[:id]
+  end
+
+  def update
+
+  end
 end

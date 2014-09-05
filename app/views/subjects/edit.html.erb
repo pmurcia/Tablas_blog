@@ -1,0 +1,5 @@
+<%= form_for @subject, url: {action: 'update'} do |f| %>
+  <%= f.label :nombre %><br/>
+  <%= f.text_field :name %><br/><br/>
+  <%= f.submit 'Modificar' %>
+<% end %>
