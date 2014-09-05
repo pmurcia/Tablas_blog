@@ -3,3 +3,5 @@
   <li><%= link_to subject.name, subject_path(subject) %></li>
 <% end %>
 </ul>
+
+<%= button_to 'Añadir asignatura', new_subject_path, method: :get %>
