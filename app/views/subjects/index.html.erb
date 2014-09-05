@@ -1,6 +1,6 @@
-<ul>
+<ul class="no-bullet">
   <% @subjects.each do |subject| %>
-    <li><%= link_to subject.name, subject_path(subject) %> <%= link_to 'Borrar', subject_path(subject), method: :delete %></li>
+    <li><%= link_to subject.name, subject_path(subject) %> <small><%= link_to 'Borrar', subject_path(subject), method: :delete %></small></li>
   <% end %>
 </ul>
 
