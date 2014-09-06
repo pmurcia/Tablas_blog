@@ -6,6 +6,7 @@ class SubjectsController < ApplicationController
 
   def show
   	@subject = Subject.find params[:id]
+  	@course = Course.first
   end
 
   def new
