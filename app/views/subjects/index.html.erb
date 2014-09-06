@@ -1,7 +1,9 @@
-<ul class="no-bullet">
-  <% @subjects.each do |subject| %>
-    <li><%= link_to subject.name, subject_path(subject) %> <small><%= link_to 'Borrar', subject_path(subject), method: :delete %></small></li>
-  <% end %>
-</ul>
+<div class="row">
+  <ul class="no-bullet">
+    <% @subjects.each do |subject| %>
+      <li><%= link_to subject.name, subject_path(subject) %> <small><%= link_to 'Borrar', subject_path(subject), method: :delete %></small></li>
+    <% end %>
+  </ul>
 
-<%= button_to 'Añadir asignatura', new_subject_path, method: :get %>
+  <%= button_to 'Añadir asignatura', new_subject_path, method: :get %>
+</div>
