@@ -1,12 +1,10 @@
 class SubjectsController < ApplicationController
   def index
   	@subjects = Subject.all.order(created_at: :asc)
-  	@courses = Course.all
   end
 
   def show
   	@subject = Subject.find params[:id]
-  	@course = Course.first
   end
 
   def new
