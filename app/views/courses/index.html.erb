@@ -1,1 +1,7 @@
-<div class="row">Hola</div>
+<div class="row">
+  <ul class="disc">
+  <% @courses.each do |course| %>
+    <li><%= course.name %></li>
+  <% end %>
+  </ul>
+</div>

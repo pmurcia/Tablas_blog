@@ -1,22 +1,26 @@
 class CoursesController < ApplicationController
   def index
-  	@courses = Course.all
+  	# binding.pry
+  	subject = Subject.find params[:subject_id]
+  	@courses = subject.courses.all
   end
 
   def show
-  	@course = Course.find params[:id]
+  	subject = Subject.find params[:subject_id]
+  	@course = subject.courses.find params[:id]
   end
 
   def new
-  	@course = Course.new
+  	@subject = Subject.find params[:subject_id]
+  	@course = @subject.courses.new
   end
 
   def create
-  	@subject = Subject.find params[:id]
-  	@course = Course.create name: params[:course][:name], subject_id: @subject
+  	@subject = Subject.find params[:subject_id]
+  	@course = @subject.courses.create name: params[:course][:name], subject_id: @subject
 
   	if @course.save
-  	  redirect_to action: 'index', controller: 'courses', id: @subject.id
+  	  redirect_to action: 'show', controller: 'subjects', id: @subject.id
   	else
   	  render 'new'
   	end
