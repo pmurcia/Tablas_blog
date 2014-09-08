@@ -44,8 +44,7 @@
                 <li class="has-dropdown">
                   <a href="#"><%= link_to subject.name, subject_path(subject) %></a>
                   <ul class="dropdown">
-                    <% courses = Course.all %>
-                    <% courses.each do |course| %>
+                    <% subject.courses.each do |course| %>
                       <li><a href="#"><%= course.name %></a></li>
                     <% end %>
                   </ul>

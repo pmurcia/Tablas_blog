@@ -3,9 +3,9 @@
     <% @subjects.each do |subject| %>
       <li><%= link_to subject.name, subject_path(subject) %> <small><%= link_to 'Borrar', subject_path(subject), method: :delete %></small></li>
       <ul class="disc">
-      <% @courses.each do |course| %>
-        <li><%= course.name %></li>
-      <% end %>
+        <% subject.courses.each do |course| %>
+          <li><%= course.name %></li>
+        <% end %>
       </ul>
     <% end %>
   </ul>
