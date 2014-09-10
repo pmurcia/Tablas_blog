@@ -2,7 +2,7 @@
   <ul class="no-bullet">
     <% @subjects.each do |subject| %>
       <li><%= link_to subject.name, subject_path(subject) %> 
-      <% if current_user %>
+      <% if current_user && current_user.has_role?(:admin) %>
         <small><%= link_to 'Borrar', subject_path(subject), method: :delete %></small>
       <% end %>
       </li>
@@ -14,7 +14,7 @@
     <% end %>
   </ul>
 
-  <% if current_user %>
+  <% if current_user && current_user.has_role?(:teacher) %>
     <%= button_to 'Añadir asignatura', new_subject_path, method: :get %>
   <% end %>
 </div>

@@ -1,4 +1,4 @@
 class Course < ActiveRecord::Base
-  # resourcify
+  resourcify
   belongs_to :subject
 end
