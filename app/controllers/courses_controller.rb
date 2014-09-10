@@ -33,7 +33,7 @@ class CoursesController < ApplicationController
   	@course.update name: params[:course][:name]
 
   	if @subject.valid?
-  	  redirect_to action: 'index', controller: 'subjects'
+  	  redirect_to action: 'show', controller: 'courses'
   	else
   	  render 'edit'
   	end 
