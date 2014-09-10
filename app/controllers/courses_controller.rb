@@ -2,8 +2,7 @@ class CoursesController < ApplicationController
   before_filter :set_subject!
 
   def index
-  	# binding.pry
-  	@courses = @subject.courses.all
+  	redirect_to action: 'show', controller: 'subjects', id: @subject
   end
 
   def show
