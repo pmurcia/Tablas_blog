@@ -1,1 +1,5 @@
-<h1><%= @course.name %><small><small>[<%= link_to 'Editar', edit_subject_course_path(@subject, @course) %>]</small></small></h1>
+<h1><%= @course.name %>
+<% if current_user %>
+  <small><small>[<%= link_to 'Editar', edit_subject_course_path(@subject, @course) %>]</small></small>
+<% end %>
+</h1>
