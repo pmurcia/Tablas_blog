@@ -7,4 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Subject.create(name: 'Matemáticas')
 Course.create(name: '1º ESO C')
-User.create(email: 'p.murcia.morilla@gmail.com', password: 'adminadmin', password_confirmation: 'adminadmin')
+admin = User.create(email: 'p.murcia.morilla@gmail.com', password: 'adminadmin', password_confirmation: 'adminadmin')
+admin.add_role :admin
