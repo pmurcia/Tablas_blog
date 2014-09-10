@@ -1,22 +1,20 @@
 class CoursesController < ApplicationController
+  before_filter :set_subject!
+
   def index
   	# binding.pry
-  	subject = Subject.find params[:subject_id]
-  	@courses = subject.courses.all
+  	@courses = @subject.courses.all
   end
 
   def show
-  	subject = Subject.find params[:subject_id]
-  	@course = subject.courses.find params[:id]
+  	@course = @subject.courses.find params[:id]
   end
 
   def new
-  	@subject = Subject.find params[:subject_id]
   	@course = @subject.courses.new
   end
 
   def create
-  	@subject = Subject.find params[:subject_id]
   	@course = @subject.courses.create name: params[:course][:name], subject_id: @subject
 
   	if @course.save
@@ -24,5 +22,27 @@ class CoursesController < ApplicationController
   	else
   	  render 'new'
   	end
+  end
+
+  def edit
+  	@course = @subject.courses.find params[:id]
+  end
+
+  def update
+  	@course = @subject.courses.find params[:id]
+  	# binding.pry
+  	@course.update name: params[:course][:name]
+
+  	if @subject.valid?
+  	  redirect_to action: 'index', controller: 'subjects'
+  	else
+  	  render 'edit'
+  	end 
+  end
+
+  private
+
+  def set_subject!
+  	@subject = Subject.find params[:subject_id]
   end
 end
