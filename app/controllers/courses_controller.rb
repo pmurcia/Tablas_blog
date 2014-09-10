@@ -29,7 +29,6 @@ class CoursesController < ApplicationController
 
   def update
   	@course = @subject.courses.find params[:id]
-  	# binding.pry
   	@course.update name: params[:course][:name]
 
   	if @subject.valid?
