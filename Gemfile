@@ -40,3 +40,4 @@ gem 'spring',        group: :development
 
 gem 'pry'
 gem 'foundation-rails'
+gem 'devise'
