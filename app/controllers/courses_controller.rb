@@ -40,6 +40,18 @@ class CoursesController < ApplicationController
   	end 
   end
 
+  def destroy
+  	@course = @subject.courses.find params[:id]
+
+  	if @course.destroy
+  	  flash[:notice] = 'Borrada con éxito'
+  	  redirect_to action: 'show', controller: 'subjects', id: @course.subject
+  	else
+  	  flash[:notice] = 'Borrada con éxito'
+  	  redirect_to action: 'show', controller: 'subjects', id: @course.subject
+  	end
+  end
+
   private
 
   def set_subject!
