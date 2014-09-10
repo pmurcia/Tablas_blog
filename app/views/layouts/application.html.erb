@@ -41,14 +41,20 @@
             <% subjects = Subject.all %>
             <ul class="dropdown">
               <% subjects.each do |subject| %>
-                <li class="has-dropdown">
-                  <a href="#"><%= link_to subject.name, subject_path(subject) %></a>
-                  <ul class="dropdown">
-                    <% subject.courses.each do |course| %>
-                      <li><a href="#"><%= link_to course.name, subject_course_path(subject, course) %></a></li>
-                    <% end %>
-                  </ul>
-                </li>
+                <% if !subject.courses.empty? %>
+                  <li class="has-dropdown">
+                    <a href="#"><%= link_to subject.name, subject_path(subject) %></a>
+                    <ul class="dropdown">
+                      <% subject.courses.each do |course| %>
+                        <li><a href="#"><%= link_to course.name, subject_course_path(subject, course) %></a></li>
+                      <% end %>
+                    </ul>
+                  </li>
+                <% else %>
+                  <li>
+                    <a href="#"><%= link_to subject.name, subject_path(subject) %></a>
+                  </li>
+                <% end %>
               <% end %>
             </ul>
           </li>
