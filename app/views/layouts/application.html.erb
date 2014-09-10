@@ -42,7 +42,7 @@
         <ul class="left">
           <li class="has-dropdown">
             <a href="#">
-              <% if current_user && !current_user.has_role? %>   Asignaturas</a>
+              <% if current_user && current_user.has_role?(:admin) %>   Asignaturas</a>
               <% subjects = Subject.all %>
               <ul class="dropdown">
                 <% subjects.each do |subject| %>
@@ -64,8 +64,22 @@
               </ul>
               <% else %>
               Cursos</a>
+              <% courses = Course.all %>
               <ul class="dropdown">
-                <li><a href="#">Working on it...</a></li>
+                <% courses.each do |course| %>
+                  <% if !course.subject.blank? %>
+                    <li class="has-dropdown">
+                      <a href="#"><%= link_to course.name, subject_course_path(course.subject, course) %></a>
+                      <ul class="dropdown">
+                        <li><a href="#"><%= link_to course.subject.name, subject_path(course.subject) %></a></li>
+                      </ul>
+                    </li>
+                  <% else %>
+                    <li>
+                      <a href="#"><%= link_to course.name, subject_course_path(course.subject, course) %></a>
+                    </li>
+                  <% end %>
+                <% end %>
               </ul>
               <% end %>
             
