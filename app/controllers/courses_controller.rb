@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_filter :set_subject!
+  before_filter :authenticate_user!
 
   def index
   	redirect_to action: 'show', controller: 'subjects', id: @subject

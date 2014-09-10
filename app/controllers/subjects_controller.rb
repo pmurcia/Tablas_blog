@@ -1,4 +1,6 @@
 class SubjectsController < ApplicationController
+  before_filter :authenticate_user!, except: [:index]
+  
   def index
   	@subjects = Subject.all.order(created_at: :asc)
   end
