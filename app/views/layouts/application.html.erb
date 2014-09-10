@@ -41,26 +41,34 @@
         <!-- Left Nav Section -->
         <ul class="left">
           <li class="has-dropdown">
-            <a href="#">Asignaturas</a>
-            <% subjects = Subject.all %>
-            <ul class="dropdown">
-              <% subjects.each do |subject| %>
-                <% if !subject.courses.empty? %>
-                  <li class="has-dropdown">
-                    <a href="#"><%= link_to subject.name, subject_path(subject) %></a>
-                    <ul class="dropdown">
-                      <% subject.courses.each do |course| %>
-                        <li><a href="#"><%= link_to course.name, subject_course_path(subject, course) %></a></li>
-                      <% end %>
-                    </ul>
-                  </li>
-                <% else %>
-                  <li>
-                    <a href="#"><%= link_to subject.name, subject_path(subject) %></a>
-                  </li>
+            <a href="#">
+              <% if current_user && !current_user.has_role? %>   Asignaturas</a>
+              <% subjects = Subject.all %>
+              <ul class="dropdown">
+                <% subjects.each do |subject| %>
+                  <% if !subject.courses.empty? %>
+                    <li class="has-dropdown">
+                      <a href="#"><%= link_to subject.name, subject_path(subject) %></a>
+                      <ul class="dropdown">
+                        <% subject.courses.each do |course| %>
+                          <li><a href="#"><%= link_to course.name, subject_course_path(subject, course) %></a></li>
+                        <% end %>
+                      </ul>
+                    </li>
+                  <% else %>
+                    <li>
+                      <a href="#"><%= link_to subject.name, subject_path(subject) %></a>
+                    </li>
+                  <% end %>
                 <% end %>
+              </ul>
+              <% else %>
+              Cursos</a>
+              <ul class="dropdown">
+                <li><a href="#">Working on it...</a></li>
+              </ul>
               <% end %>
-            </ul>
+            
           </li>
         </ul>
       </section>
