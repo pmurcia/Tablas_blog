@@ -2,7 +2,7 @@
   <h1><%= @subject.name %><small><small>[<%= link_to 'Editar', edit_subject_path(@subject) %>]</small></small></h1>
   <ul class="disc">
   <% @subject.courses.each do |course| %>
-  	<li><%= link_to course.name, subject_course_path(@subject, course) %></li>
+  	<li><%= link_to course.name, subject_course_path(@subject, course) %> <small><%= link_to 'Borrar', subject_course_path(@subject, course), method: :delete %></small></li>
   <% end %>
   </ul>
 
