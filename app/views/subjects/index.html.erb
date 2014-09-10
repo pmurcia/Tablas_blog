@@ -1,7 +1,11 @@
 <div class="row">
   <ul class="no-bullet">
     <% @subjects.each do |subject| %>
-      <li><%= link_to subject.name, subject_path(subject) %> <small><%= link_to 'Borrar', subject_path(subject), method: :delete %></small></li>
+      <li><%= link_to subject.name, subject_path(subject) %> 
+      <% if current_user %>
+        <small><%= link_to 'Borrar', subject_path(subject), method: :delete %></small>
+      <% end %>
+      </li>
       <ul class="disc">
         <% subject.courses.each do |course| %>
           <li><%= link_to course.name, subject_course_path(subject, course) %></li>
@@ -10,5 +14,7 @@
     <% end %>
   </ul>
 
-  <%= button_to 'Añadir asignatura', new_subject_path, method: :get %>
+  <% if current_user %>
+    <%= button_to 'Añadir asignatura', new_subject_path, method: :get %>
+  <% end %>
 </div>
