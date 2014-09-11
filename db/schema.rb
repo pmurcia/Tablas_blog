@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20140911145341) do
   create_table "posts", force: true do |t|
     t.string   "title"
     t.text     "content"
+    t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

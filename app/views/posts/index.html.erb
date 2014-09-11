@@ -1,4 +1,6 @@
 <ul class="disc">
-  <li>Post 1</li>
-  <li>Post 2</li>
+<% @posts.each do |post| %>
+  <li><%= post.title %></li>
+  <p><%= post.content %></p>
+<% end %>
 </ul>
