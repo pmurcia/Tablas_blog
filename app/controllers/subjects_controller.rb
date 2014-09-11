@@ -6,7 +6,7 @@ class SubjectsController < ApplicationController
   end
 
   def show
-  	@subject = Subject.find params[:id]
+  	@subject = Subject.friendly.find params[:id]
   end
 
   def new
@@ -14,6 +14,7 @@ class SubjectsController < ApplicationController
   end
 
   def create
+    # binding.pry
   	@subject = Subject.create name: params[:subject][:name]
 
   	if @subject.save
@@ -24,11 +25,11 @@ class SubjectsController < ApplicationController
   end
 
   def edit
-  	@subject = Subject.find params[:id]
+  	@subject = Subject.friendly.find params[:id]
   end
 
   def update
-  	@subject = Subject.find params[:id]
+  	@subject = Subject.friendly.find params[:id]
   	@subject.update name: params[:subject][:name]
 
   	if @subject.valid?
@@ -39,7 +40,7 @@ class SubjectsController < ApplicationController
   end
 
   def destroy
-  	@subject = Subject.find params[:id]
+  	@subject = Subject.friendly.find params[:id]
 
   	if @subject.destroy
   	  flash[:notice] = 'Borrada con éxito'

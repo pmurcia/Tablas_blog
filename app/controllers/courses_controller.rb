@@ -59,6 +59,6 @@ class CoursesController < ApplicationController
   private
 
   def set_subject!
-  	@subject = Subject.find params[:subject_id]
+  	@subject = Subject.friendly.find params[:subject_id]
   end
 end

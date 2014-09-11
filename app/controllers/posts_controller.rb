@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   end
 
   def show
-  	@post = @course.posts.find params[:id]
+  	@post = @course.posts.friendly.find params[:id]
   end
 
   def new
@@ -26,11 +26,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = @course.posts.find params[:id]
+    @post = @course.posts.friendly.find params[:id]
   end
 
   def update
-    @post = @course.posts.find params[:id]
+    @post = @course.posts.friendly.find params[:id]
     @post.update title: params[:post][:title], content: params[:post][:content]
 
     if @post.valid?
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = @course.posts.find params[:id]
+    @post = @course.posts.friendly.find params[:id]
 
     if @post.destroy
       flash[:notice] = 'Borrada con éxito'
@@ -57,8 +57,8 @@ class PostsController < ApplicationController
   private
 
   def set_course!
-  	@subject = Subject.find params[:subject_id]
-  	@course = @subject.courses.find params[:course_id]
+  	@subject = Subject.friendly.find params[:subject_id]
+  	@course = @subject.courses.friendly.find params[:course_id]
 
 
   end
