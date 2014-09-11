@@ -34,7 +34,7 @@ class CoursesController < ApplicationController
   	@course = @subject.courses.find params[:id]
   	@course.update name: params[:course][:name]
 
-  	if @subject.valid?
+  	if @course.valid?
       flash[:notice] = 'Modificada satisfactoriamente'
   	  redirect_to action: 'show', controller: 'courses'
   	else
