@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'subjects#index'
   resources :subjects do
-    resources :courses
+    resources :courses do
+      resources :posts
+    end
   end
 
   # Example of regular route:
