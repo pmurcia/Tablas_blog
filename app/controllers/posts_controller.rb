@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_course!
 
   def index
-  	@posts = @course.posts.all
+  	redirect_to action: 'show', controller: 'courses', subject_id: @subject, id: @course
   end
 
   def show

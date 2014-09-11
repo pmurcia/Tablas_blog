@@ -8,6 +8,7 @@ class CoursesController < ApplicationController
 
   def show
   	@course = @subject.courses.find params[:id]
+    @posts = @course.posts.all
   end
 
   def new
