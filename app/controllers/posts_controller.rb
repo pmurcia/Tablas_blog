@@ -35,10 +35,22 @@ class PostsController < ApplicationController
 
     if @post.valid?
       flash[:notice] = 'Modificada satisfactoriamente'
-      redirect_to action: 'show', controller: 'courses'
+      redirect_to action: 'show', controller: 'courses', subject_id: @subject, id: @course
     else
       flash[:alert] = 'No se puede modificar.'
       render 'edit'
+    end
+  end
+
+  def destroy
+    @post = @course.posts.find params[:id]
+
+    if @post.destroy
+      flash[:notice] = 'Borrada con éxito'
+      redirect_to action: 'show', controller: 'courses', subject_id: @subject, id: @course
+    else
+      flash[:notice] = 'No ha podido ser borrada'
+      redirect_to action: 'show', controller: 'courses', subject_id: @subject, id: @course
     end
   end
 
