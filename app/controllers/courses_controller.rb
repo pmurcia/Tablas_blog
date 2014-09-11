@@ -18,8 +18,10 @@ class CoursesController < ApplicationController
   	@course = @subject.courses.create name: params[:course][:name], subject_id: @subject
 
   	if @course.save
+      flash[:notice] = 'Creada satisfactoriamente'
   	  redirect_to action: 'show', controller: 'subjects', id: @subject.id
   	else
+      flash[:alert] = 'No se ha podido crear. ¿Te has asegurado de que no existe?'
   	  render 'new'
   	end
   end
@@ -33,8 +35,10 @@ class CoursesController < ApplicationController
   	@course.update name: params[:course][:name]
 
   	if @subject.valid?
+      flash[:notice] = 'Modificada satisfactoriamente'
   	  redirect_to action: 'show', controller: 'courses'
   	else
+      flash[:alert] = 'No se puede modificar. ¿Te has asegurado de que no exista?'
   	  render 'edit'
   	end 
   end
@@ -46,7 +50,7 @@ class CoursesController < ApplicationController
   	  flash[:notice] = 'Borrada con éxito'
   	  redirect_to action: 'show', controller: 'subjects', id: @course.subject
   	else
-  	  flash[:notice] = 'Borrada con éxito'
+  	  flash[:notice] = 'No ha podido ser borrada'
   	  redirect_to action: 'show', controller: 'subjects', id: @course.subject
   	end
   end
