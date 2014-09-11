@@ -1,20 +1,40 @@
 <div class="row">
+
+  <!-- Title -->
   <h1><%= @subject.name %>
   <% if current_user %>
   	<small><small>[<%= link_to 'Editar', edit_subject_path(@subject) %>]</small></small>
   <% end %>
-  </h1>
-  <ul class="disc">
-  <% @subject.courses.each do |course| %>
-  	<li><%= link_to course.name, subject_course_path(@subject, course) %>
-  	<% if current_user %>
-  		<small><%= link_to 'Borrar', subject_course_path(@subject, course), method: :delete %></small>
-  	<% end %>
-  	</li>
-  <% end %>
-  </ul>
+  <!-- /Title -->
 
+  <!-- Table -->
+  <table>
+    <thead>  
+      <tr>
+        <td>Curso</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      <% @subject.courses.each do |course| %>
+    	  <td>
+          <%= link_to course.name, subject_course_path(@subject, course) %>
+    	  </td>
+
+        <% if current_user %>
+        <td>
+    		  <%= link_to 'Borrar', subject_course_path(@subject, course), method: :delete %>
+        </td>
+    	  <% end %>
+      <% end %>
+      </tr>
+    </tbody>  
+  </table>
+  <!-- /Table -->
+
+  <!-- Button to create button -->
   <% if current_user %>
   <%= button_to 'Crear curso', new_subject_course_path(@subject), method: :get %>
   <% end %>
+  <!-- /Button -->
 </div>
