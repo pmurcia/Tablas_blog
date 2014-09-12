@@ -1,10 +1,14 @@
 class CoursesController < ApplicationController
   # COMPROBAR BASE DE DATOS. has_and_belogs_to_many : ... ???
-  before_filter :set_subject!
+  before_filter :set_subject!, except: [:index_student]
   before_filter :authenticate_user!
 
   def index
   	redirect_to action: 'show', controller: 'subjects', id: @subject
+  end
+
+  def index_student
+    @course = Course.friendly.find params[:id]
   end
 
   def show

@@ -1,0 +1,7 @@
+<% @posts.each do |post| %>
+<table>
+  <thead><tr><td><%= post.title %><small><%= link_to 'Editar', edit_subject_course_post_path(@subject, @course, post) %></small></td></tr></thead>
+  <tbody><tr><td><%= post.content %><small><%= link_to 'Borrar', subject_course_post_path(@subject, @course, post), method: :delete %></small></td></tr></tbody>
+</table>
+<br/>
+<% end %>
