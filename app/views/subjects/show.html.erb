@@ -15,19 +15,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
       <% @subject.courses.each do |course| %>
+      <tr>
     	  <td>
           <%= link_to course.name, subject_course_path(@subject, course) %>
     	  </td>
-
+        
         <% if current_user %>
         <td>
-    		  <%= link_to 'Borrar', subject_course_path(@subject, course), method: :delete %>
+          <%= link_to 'Borrar', subject_course_path(@subject, course), method: :delete %>
         </td>
-    	  <% end %>
-      <% end %>
+        <% end %>
       </tr>
+      <% end %>
     </tbody>  
   </table>
   <!-- /Table -->

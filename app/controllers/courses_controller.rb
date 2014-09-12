@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-  	@course = @subject.courses.find params[:id]
+  	@course = @subject.courses.friendly.find params[:id]
     @posts = @course.posts.all
   end
 
@@ -16,11 +16,11 @@ class CoursesController < ApplicationController
   end
 
   def create
-  	@course = @subject.courses.create name: params[:course][:name], subject_id: @subject
+  	@course = @subject.courses.create name: params[:course][:name], subject_id: @subject.slug
 
   	if @course.save
       flash[:notice] = 'Creada satisfactoriamente'
-  	  redirect_to action: 'show', controller: 'subjects', id: @subject.id
+  	  redirect_to action: 'show', controller: 'subjects', id: @subject.slug
   	else
       flash[:alert] = 'No se ha podido crear. ¿Te has asegurado de que no existe?'
   	  render 'new'
@@ -28,11 +28,11 @@ class CoursesController < ApplicationController
   end
 
   def edit
-  	@course = @subject.courses.find params[:id]
+  	@course = @subject.courses.friendly.find params[:id]
   end
 
   def update
-  	@course = @subject.courses.find params[:id]
+  	@course = @subject.courses.friendly.find params[:id]
   	@course.update name: params[:course][:name]
 
   	if @course.valid?
@@ -45,7 +45,7 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-  	@course = @subject.courses.find params[:id]
+  	@course = @subject.courses.friendly.find params[:id]
 
   	if @course.destroy
   	  flash[:notice] = 'Borrada con éxito'
