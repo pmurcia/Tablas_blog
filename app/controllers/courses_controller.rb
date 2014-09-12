@@ -9,6 +9,7 @@ class CoursesController < ApplicationController
 
   def index_student
     @course = Course.friendly.find params[:id]
+    render 'index_student'
   end
 
   def show
