@@ -64,7 +64,7 @@
               </ul>
               <% else %>
               Cursos</a>
-              <% courses = Course.select(:name).group(:name) %>
+              <% courses = Course.select(:name).group(:name).order(name: :asc) %>
               <ul class="dropdown">
                 <% courses.each do |course| %>
                   <li class="has-dropdown">
@@ -72,7 +72,7 @@
                     <ul class="dropdown">
                       <% courses_found = Course.where(name: course.name) %>
                       <% courses_found.each do |course_found| %>
-                        <li><a href="#"><%= link_to course_found.subject.name, subject_course_path(course_found.subject.name, course_found.name) %></a></li>
+                        <li><a href="#"><%= link_to course_found.subject.name, subject_course_path(course_found.subject.slug, course_found.slug) %></a></li>
                       <% end %>
                     </ul>
                   </li>
