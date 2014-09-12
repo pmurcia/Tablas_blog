@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+  # COMPROBAR BASE DE DATOS. has_and_belogs_to_many : ... ???
   before_filter :set_subject!
   before_filter :authenticate_user!
 

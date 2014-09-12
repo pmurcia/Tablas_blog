@@ -28,13 +28,13 @@
           <li class="has-dropdown">
             <a href="#"><%= current_user.email %></a>
             <ul class="dropdown">
-              <li><a href="#"><%= link_to 'Edit profile', edit_user_registration_path %></a></li>
-              <li><a href="#"><%= link_to "Logout", destroy_user_session_path, method: :delete %></a></li>
+              <li><a href="#"><%= link_to 'Editar perfil', edit_user_registration_path %></a></li>
+              <li><a href="#"><%= link_to "Salir", destroy_user_session_path, method: :delete %></a></li>
             </ul>
           </li>
         <% else %>
-          <li><a href="#"><%= link_to "Sign up", new_user_registration_path %></a></li>
-          <li><a href="#"><%= link_to "Login", new_user_session_path %></a></li>
+          <li><a href="#"><%= link_to "Registrarse", new_user_registration_path %></a></li>
+          <li><a href="#"><%= link_to "Entrar", new_user_session_path %></a></li>
         <% end %>
         </ul>
 
@@ -64,21 +64,18 @@
               </ul>
               <% else %>
               Cursos</a>
-              <% courses = Course.all.distinct %>
+              <% courses = Course.select(:name).group(:name) %>
               <ul class="dropdown">
                 <% courses.each do |course| %>
-                  <% if !course.subject.blank? %>
-                    <li class="has-dropdown">
-                      <a href="#"><%= link_to course.name, subject_course_path(course.subject, course) %></a>
-                      <ul class="dropdown">
-                        <li><a href="#"><%= link_to course.subject.name, subject_path(course.subject) %></a></li>
-                      </ul>
-                    </li>
-                  <% else %>
-                    <li>
-                      <a href="#"><%= link_to course.name, subject_course_path(course.subject, course) %></a>
-                    </li>
-                  <% end %>
+                  <li class="has-dropdown">
+                    <a href="#"><%= course.name %></a>
+                    <ul class="dropdown">
+                      <% courses_found = Course.where(name: course.name) %>
+                      <% courses_found.each do |course_found| %>
+                        <li><a href="#"><%= link_to course_found.subject.name, subject_course_path(course_found.subject.name, course_found.name) %></a></li>
+                      <% end %>
+                    </ul>
+                  </li>
                 <% end %>
               </ul>
               <% end %>
