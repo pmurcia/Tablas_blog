@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-super_admin = User.create(email: 'p.murcia.morilla@gmail.com', password: 'adminadmin', password_confirmation: 'adminadmin')
+super_admin = User.create(email: 'p.murcia.morilla@gmail.com', password: 'adminadmin', password_confirmation: 'adminadmin', username: 'pmurmor')
 super_admin.add_role :super_admin
 
 admin = User.create(email: 'admin@gmail.com', password: 'adminadmin', password_confirmation: 'adminadmin')
