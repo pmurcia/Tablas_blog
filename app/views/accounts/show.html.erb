@@ -1,0 +1,11 @@
+<ul>
+  <li><%= @user.email %></li>
+  <li><%= @user.username %></li>
+  <li><%= @user.last_sign_in_at %></li>
+  <li>Roles
+    <ul><% @user.roles.each do |role| %>
+      <li><%= role.name %></li>
+      <% end %>
+    </ul>
+  </li>
+</ul>
