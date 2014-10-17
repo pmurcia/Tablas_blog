@@ -1,0 +1,8 @@
+<% @users.each do |user| %>
+<ul>
+  <li><%= user.email %></li>
+  <% if !user.username.blank? %>
+    <li><%= user.username %></li>
+  <% end %>
+</ul>
+<% end %>
