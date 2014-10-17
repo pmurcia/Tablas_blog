@@ -22,9 +22,9 @@ class CoursesController < ApplicationController
   end
 
   def create
-  	@course = @subject.courses.create name: params[:course][:name], subject_id: @subject.slug
-
-  	if @course.save
+  	@course = @subject.courses.create name: params[:course][:name], subject_id: @subject.slug 
+  	binding.pry
+    if @course.save
       flash[:notice] = 'Creada satisfactoriamente'
   	  redirect_to action: 'show', controller: 'subjects', id: @subject.slug
   	else
