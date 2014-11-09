@@ -45,6 +45,9 @@
               <% if current_user && (current_user.has_role?(:super_admin) || current_user.has_role?(:admin) || current_user.has_role?(:department_head) || current_user.has_role?(:teacher)) %>   Asignaturas</a>
               <% subjects = Subject.all.distinct %>
               <ul class="dropdown">
+              <% if subjects.empty? %>
+                <li class="has-dropdown"><small style="color:white;">No hay cursos disponibles. Crea el <%= link_to "primero", new_subject_path %>.</small></li>
+              <% else %>
                 <% subjects.each do |subject| %>
                   <% if !subject.courses.empty? %>
                     <li class="has-dropdown">
@@ -61,6 +64,7 @@
                     </li>
                   <% end %>
                 <% end %>
+              <% end %>
               </ul>
               <% else %>
               Cursos</a>

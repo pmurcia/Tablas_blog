@@ -23,7 +23,7 @@ class CoursesController < ApplicationController
 
   def create
   	@course = @subject.courses.create name: params[:course][:name], subject_id: @subject.slug 
-  	binding.pry
+  	# binding.pry
     if @course.save
       flash[:notice] = 'Creada satisfactoriamente'
   	  redirect_to action: 'show', controller: 'subjects', id: @subject.slug
